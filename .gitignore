@@ -1,0 +1,5 @@
+.env
+.streamlit/secrets.toml
+data/01_raw/
+data/02_pre_proc/
+data/03_refined/
