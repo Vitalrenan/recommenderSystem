@@ -1,3 +1,6 @@
 streamlit
 pandas
 st-files-connection
+langchain_openai
+faiss-cpu
+langchain-community
