@@ -14,11 +14,11 @@ embeddings = OpenAIEmbeddings(
     )
 #import vector databases
 VS_content_based = FAISS.load_local(
-    "/content/VS_content_based",
+    "../data/04_vector_store/VS_content_based",
     embeddings, allow_dangerous_deserialization=True
     )
 VS_collab_based = FAISS.load_local(
-    "/content/VS_collab_based", embeddings, allow_dangerous_deserialization=True
+    "../data/04_vector_store/VS_content_based", embeddings, allow_dangerous_deserialization=True
 )
 
 def recommender(purchased_games, df_feats):
