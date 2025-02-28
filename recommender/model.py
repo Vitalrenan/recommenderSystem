@@ -2,6 +2,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings
 import re
 import streamlit as st
+import ast
 
 #setup - embedding
 embeddings = OpenAIEmbeddings(
@@ -18,7 +19,7 @@ VS_collab_based = FAISS.load_local(
     "data/04_vector_store/VS_collab_based", embeddings, allow_dangerous_deserialization=True
 )
 
-def recommender(purchased_games, df_feat):
+def content_recommender(purchased_games, df_feat):
     #treating game list
     purchased_games = [re.sub('[^A-Za-z0-9]+', '', i) for i in purchased_games]
     purchased_games = [i.lower() for i in purchased_games]
@@ -43,5 +44,27 @@ def recommender(purchased_games, df_feat):
     content_results_list=[]
     for i in content_results:
         content_results_list.append(i.id)
-    collab_results = list(set(content_results_list)-set(purchased_games))
+    content_results = list(set(content_results_list)-set(purchased_games))
+    return content_results
+
+
+
+def collab_recommender(purchased_games):
+    #treating game list
+    purchased_games = [re.sub('[^A-Za-z0-9]+', '', i) for i in purchased_games]
+    purchased_games = [i.lower() for i in purchased_games]
+    purchased_games = [i.replace(' ','') for i in purchased_games]
+    
+    collab_results = VS_collab_based.similarity_search(
+    str(purchased_games),
+    k=10,
+    )
+    
+    collab_results_list=[]
+    for i in collab_results:
+        converted_lists = ast.literal_eval(i.page_content)
+        converted_lists = list(set(converted_lists))
+        converted_lists = [item.split(',')[0] for item in converted_lists]
+        collab_results_list.append(converted_lists)
+    collab_results = list(set(collab_results_list)-set(purchased_games))
     return collab_results

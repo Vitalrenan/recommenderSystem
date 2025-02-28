@@ -15,10 +15,9 @@ df_full.drop_duplicates(subset='FK_GAME_NAME',inplace=True)
 df_full['Screenshots'] = df_full['Screenshots'].apply(lambda x: x.split(',')[0] if x!=None else 'No Image')
 
 
-content = model.recommender(purchased_games, df_feat)
-st.dataframe(df_full[df_full.FK_GAME_NAME.isin(content)])
-st.markdown(content)
-
+content = model.content_recommender(purchased_games, df_feat)
+collab = model.collab_recommender(purchased_games)
+st.dataframe(df_full[df_full.FK_GAME_NAME.isin(collab)])
 
 
 
