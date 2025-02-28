@@ -43,19 +43,19 @@ else:
             st.image(df_full[df_full.FK_GAME_NAME.isin(hybrid)]['Screenshots'].iloc[0])
             st.markdown(df_full[df_full.FK_GAME_NAME.isin(hybrid)]['GAME_NAME'].iloc[0])
         else:
-            st.markdown("No recommendations yet")
+            pass
     with col_hybrid_b:
         if df_full[df_full.FK_GAME_NAME.isin(hybrid)].shape[0]>1:
             st.image(df_full[df_full.FK_GAME_NAME.isin(hybrid)]['Screenshots'].iloc[1])
             st.markdown(df_full[df_full.FK_GAME_NAME.isin(hybrid)]['GAME_NAME'].iloc[1])
         else:
-            st.markdown("No recommendations yet")
+            pass
     with col_hybrid_c:
         if df_full[df_full.FK_GAME_NAME.isin(hybrid)].shape[0]>2:
             st.image(df_full[df_full.FK_GAME_NAME.isin(hybrid)]['Screenshots'].iloc[2])
             st.markdown(df_full[df_full.FK_GAME_NAME.isin(hybrid)]['GAME_NAME'].iloc[2])
         else:
-            st.markdown("No recommendations yet")
+            pass
     
     st.header('Recommendations based on your games:')
     col_content_a, col_content_b, col_content_c = st.columns(3)
@@ -64,19 +64,19 @@ else:
             st.image(df_full[df_full.FK_GAME_NAME.isin(content)]['Screenshots'].iloc[0])
             st.markdown(df_full[df_full.FK_GAME_NAME.isin(content)]['GAME_NAME'].iloc[0])
         else:
-            st.markdown("No recommendations yet")
+            pass
     with col_content_b:
         if df_full[df_full.FK_GAME_NAME.isin(content)].shape[0]>1:
             st.image(df_full[df_full.FK_GAME_NAME.isin(content)]['Screenshots'].iloc[1])
             st.markdown(df_full[df_full.FK_GAME_NAME.isin(content)]['GAME_NAME'].iloc[1])
         else:
-            st.markdown("No recommendations yet")
+            pass
     with col_content_c:
         if df_full[df_full.FK_GAME_NAME.isin(content)].shape[0]>2:
             st.image(df_full[df_full.FK_GAME_NAME.isin(content)]['Screenshots'].iloc[2])
             st.markdown(df_full[df_full.FK_GAME_NAME.isin(content)]['GAME_NAME'].iloc[2])
         else:
-            st.markdown("No recommendations yet")
+            pass
     
     st.header('Recommendations based on similar users:')
     col_colab_a, col_colab_b, col_colab_c = st.columns(3)
@@ -85,17 +85,17 @@ else:
             st.image(df_full[df_full.FK_GAME_NAME.isin(collab)]['Screenshots'].iloc[0])
             st.markdown(df_full[df_full.FK_GAME_NAME.isin(collab)]['GAME_NAME'].iloc[0])
         else:
-            st.markdown("No recommendations yet")
+            pass
     with col_colab_b:
         if df_full[df_full.FK_GAME_NAME.isin(collab)].shape[0]>1:
             st.image(df_full[df_full.FK_GAME_NAME.isin(collab)]['Screenshots'].iloc[0])
             st.markdown(df_full[df_full.FK_GAME_NAME.isin(collab)]['GAME_NAME'].iloc[0])
         else:
-            st.markdown("No recommendations yet")
+            pass
     with col_colab_c:
         if df_full[df_full.FK_GAME_NAME.isin(collab)].shape[0]>2:
             st.image(df_full[df_full.FK_GAME_NAME.isin(collab)]['Screenshots'].iloc[0])
             st.markdown(df_full[df_full.FK_GAME_NAME.isin(collab)]['GAME_NAME'].iloc[0])
         else:
-            st.markdown("No recommendations yet")
+            pass
     
