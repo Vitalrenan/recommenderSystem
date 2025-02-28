@@ -10,7 +10,7 @@ purchased_games = st.multiselect(label='Purchase games:',
                 )
 #
 df_feat = pd.read_parquet('https://swp-mvp-media.s3.us-east-1.amazonaws.com/data/02_processed/ABT_feats.parquet')
-df_full = pd.read_parquet('/content/ABT_full.parquet',columns=['FK_GAME_NAME','GAME_NAME','Screenshots'])
+df_full = pd.read_parquet('https://swp-mvp-media.s3.us-east-1.amazonaws.com/data/02_processed/ABT_full.parquet',columns=['FK_GAME_NAME','GAME_NAME','Screenshots'])
 df_full.drop_duplicates(subset='FK_GAME_NAME',inplace=True)
 df_full['Screenshots'] = df_full['Screenshots'].apply(lambda x: x.split(',')[0] if x!=None else 'No Image')
 
