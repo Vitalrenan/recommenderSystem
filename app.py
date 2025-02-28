@@ -28,15 +28,15 @@ if len(purchased_games)==0:
     with col_norec_a:
         norec_a = df_full.sample()
         st.image(norec_a['Screenshots'].item())
-        st.image(norec_a['GAME_NAME'].item())
+        st.markdown(norec_a['GAME_NAME'].item())
     with col_norec_b:
         norec_b = df_full.sample()
         st.image(norec_b['Screenshots'].item())
-        st.image(norec_b['GAME_NAME'].item())
+        st.markdown(norec_b['GAME_NAME'].item())
     with col_norec_c:
         norec_c = df_full.sample()
         st.image(norec_c['Screenshots'].item())
-        st.image(norec_c['GAME_NAME'].item())
+        st.markdown(norec_c['GAME_NAME'].item())
 else:
     st.header('Hybrid recommendation - Based on your own games and players with similar interests:')
     col_hybrid_a, col_hybrid_b, col_hybrid_c = st.columns(3)
