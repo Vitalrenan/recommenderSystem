@@ -3,7 +3,8 @@ import pandas as pd
 from recommender import model
 
 st.title('Recommender systems')
-st.markdown("Data scientist: Renan Vital")
+st.markdown("**Author**: Renan Vital")
+st.markdown("**Role**: Coordinator of an AI engineering and Data science team")
 st.divider()
 #
 df_feat = pd.read_parquet('https://swp-mvp-media.s3.us-east-1.amazonaws.com/data/02_processed/ABT_feats.parquet')
