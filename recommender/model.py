@@ -60,11 +60,11 @@ def collab_recommender(purchased_games):
     k=10,
     )
     
-    collab_results_list=[]
-    for i in collab_results:
-        converted_lists = ast.literal_eval(i.page_content)
-        converted_lists = list(set(converted_lists))
-        converted_lists = [item.split(',')[0] for item in converted_lists]
-        collab_results_list.append(converted_lists)
-    collab_results = list(set(collab_results_list)-set(purchased_games))
+    #collab_results_list=[]
+    #for i in collab_results:
+    #    converted_lists = ast.literal_eval(i.page_content)
+    #    converted_lists = list(set(converted_lists))
+    #    converted_lists = [item.split(',')[0] for item in converted_lists]
+    #    collab_results_list.append(converted_lists)
+    c#ollab_results = list(set(collab_results_list)-set(purchased_games))
     return collab_results

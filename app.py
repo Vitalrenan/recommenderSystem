@@ -17,8 +17,8 @@ df_full['Screenshots'] = df_full['Screenshots'].apply(lambda x: x.split(',')[0] 
 
 content = model.content_recommender(purchased_games, df_feat)
 collab = model.collab_recommender(purchased_games)
-st.dataframe(df_full[df_full.FK_GAME_NAME.isin(collab)])
-
+#st.dataframe(df_full[df_full.FK_GAME_NAME.isin(collab)])
+st.markdown(collab)
 
 
 if len(purchased_games)==0:
