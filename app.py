@@ -5,19 +5,18 @@ from recommender import model
 st.title('Recommender systems')
 st.markdown("Data scientist: Renan Vital")
 st.divider()
-purchased_games = st.multiselect(label='Purchase games:',
-                options=['The Elder Scroll Svskyrim','Fallout 4','Spore','Left 4 Dead 2']
-                )
 #
 df_feat = pd.read_parquet('https://swp-mvp-media.s3.us-east-1.amazonaws.com/data/02_processed/ABT_feats.parquet')
 df_full = pd.read_parquet('https://swp-mvp-media.s3.us-east-1.amazonaws.com/data/02_processed/ABT_full.parquet',columns=['FK_GAME_NAME','GAME_NAME','Screenshots'])
 df_full.drop_duplicates(subset='FK_GAME_NAME',inplace=True)
 df_full['Screenshots'] = df_full['Screenshots'].apply(lambda x: x.split(',')[0] if x!=None else 'No Image')
-
+purchased_games = st.multiselect(label='Purchase games:',
+                options=df_full['GAME_NAME'].to_list()
+                )
 
 content = model.content_recommender(purchased_games, df_feat)
 collab = model.collab_recommender(purchased_games)
-hybrid = set(collab)& set(content)
+hybrid = set(collab) & set(content)
 
 
 if len(purchased_games)==0:
@@ -88,14 +87,14 @@ else:
             pass
     with col_colab_b:
         if df_full[df_full.FK_GAME_NAME.isin(collab)].shape[0]>1:
-            st.image(df_full[df_full.FK_GAME_NAME.isin(collab)]['Screenshots'].iloc[0])
-            st.markdown(df_full[df_full.FK_GAME_NAME.isin(collab)]['GAME_NAME'].iloc[0])
+            st.image(df_full[df_full.FK_GAME_NAME.isin(collab)]['Screenshots'].iloc[1])
+            st.markdown(df_full[df_full.FK_GAME_NAME.isin(collab)]['GAME_NAME'].iloc[1])
         else:
             pass
     with col_colab_c:
         if df_full[df_full.FK_GAME_NAME.isin(collab)].shape[0]>2:
-            st.image(df_full[df_full.FK_GAME_NAME.isin(collab)]['Screenshots'].iloc[0])
-            st.markdown(df_full[df_full.FK_GAME_NAME.isin(collab)]['GAME_NAME'].iloc[0])
+            st.image(df_full[df_full.FK_GAME_NAME.isin(collab)]['Screenshots'].iloc[2])
+            st.markdown(df_full[df_full.FK_GAME_NAME.isin(collab)]['GAME_NAME'].iloc[2])
         else:
             pass
     
