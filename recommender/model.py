@@ -66,5 +66,6 @@ def collab_recommender(purchased_games):
        converted_lists = list(set(converted_lists))
        converted_lists = [item.split(',')[0] for item in converted_lists]
        collab_results_list.append(converted_lists)
-    #collab_results = list(set(collab_results_list)-set(purchased_games))
-    return collab_results_list
+    collab_results_list = [x for xs in collab_results_list for x in xs]
+    collab_results = list(set(collab_results_list)-set(purchased_games))
+    return collab_results
