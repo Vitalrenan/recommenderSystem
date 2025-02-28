@@ -12,7 +12,7 @@ df_full.drop_duplicates(subset='FK_GAME_NAME',inplace=True)
 df_full['Screenshots'] = df_full['Screenshots'].apply(lambda x: x.split(',')[0] if x!=None else 'No Image')
 
 st.header("This is your list of purchased games:")
-st.mardown("Select games you want, and notice your recomendations will change based on your new set")
+st.markdown("Select games you want, and notice your recomendations will change based on your new set")
 purchased_games = st.multiselect(label='Purchase games:',
                 options=df_full['GAME_NAME'].to_list()
                 )
