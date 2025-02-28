@@ -1,12 +1,8 @@
-import pandas as pd
-from openai import OpenAI
-import faiss
-from langchain_community.docstore.in_memory import InMemoryDocstore
 from langchain_community.vectorstores import FAISS
-from langchain_core.documents import Document
 from langchain_openai import OpenAIEmbeddings
 import re
 import streamlit as st
+
 #setup - embedding
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-large",
@@ -14,11 +10,12 @@ embeddings = OpenAIEmbeddings(
     )
 #import vector databases
 VS_content_based = FAISS.load_local(
-    "../data/04_vector_store/VS_content_based",
+    "data/04_vector_store/VS_content_based",
     embeddings, allow_dangerous_deserialization=True
     )
+
 VS_collab_based = FAISS.load_local(
-    "../data/04_vector_store/VS_content_based", embeddings, allow_dangerous_deserialization=True
+    "data/04_vector_store/VS_collab_based", embeddings, allow_dangerous_deserialization=True
 )
 
 def recommender(purchased_games, df_feats):
