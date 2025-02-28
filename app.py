@@ -17,8 +17,7 @@ df_full['Screenshots'] = df_full['Screenshots'].apply(lambda x: x.split(',')[0] 
 
 content = model.content_recommender(purchased_games, df_feat)
 collab = model.collab_recommender(purchased_games)
-#st.dataframe(df_full[df_full.FK_GAME_NAME.isin(collab)])
-st.markdown(collab)
+st.dataframe(df_full[df_full.FK_GAME_NAME.isin(collab)])
 
 
 if len(purchased_games)==0:
@@ -40,14 +39,23 @@ else:
     st.header('Hybrid recommendation - Based on your own games and players with similar interests:')
     col_hybrid_a, col_hybrid_b, col_hybrid_c = st.columns(3)
     with col_hybrid_a:
-        st.image('https://cdn.akamai.steamstatic.com/steam/apps/72850/ss_4e95fbcf72ce2a9f86075738fa9930ef2bed1ac7.1920x1080.jpg?t=1647357402')
-        st.markdown('The Elder Scrolls V Skyrim')
+        if df_full[df_full.FK_GAME_NAME.isin(collab)].shape[0]>0:
+            st.image(df_full[df_full.FK_GAME_NAME.isin(collab)]['Screenshots'].iloc[0])
+            st.markdown(df_full[df_full.FK_GAME_NAME.isin(collab)]['GAME_NAME'].iloc[0])
+        else:
+            st.markdown("No recommendations yet")
     with col_hybrid_b:
-        st.image('https://cdn.akamai.steamstatic.com/steam/apps/72850/ss_4e95fbcf72ce2a9f86075738fa9930ef2bed1ac7.1920x1080.jpg?t=1647357402')
-        st.markdown('The Elder Scrolls V Skyrim')
+        if df_full[df_full.FK_GAME_NAME.isin(collab)].shape[0]>0:
+            st.image(df_full[df_full.FK_GAME_NAME.isin(collab)]['Screenshots'].iloc[0])
+            st.markdown(df_full[df_full.FK_GAME_NAME.isin(collab)]['GAME_NAME'].iloc[0])
+        else:
+            st.markdown("No recommendations yet")
     with col_hybrid_c:
-        st.image('https://cdn.akamai.steamstatic.com/steam/apps/72850/ss_4e95fbcf72ce2a9f86075738fa9930ef2bed1ac7.1920x1080.jpg?t=1647357402')
-        st.markdown('The Elder Scrolls V Skyrim')
+        if df_full[df_full.FK_GAME_NAME.isin(collab)].shape[0]>0:
+            st.image(df_full[df_full.FK_GAME_NAME.isin(collab)]['Screenshots'].iloc[0])
+            st.markdown(df_full[df_full.FK_GAME_NAME.isin(collab)]['GAME_NAME'].iloc[0])
+        else:
+            st.markdown("No recommendations yet")
     
     st.header('Recommendations based on your games:')
     col_content_a, col_content_b, col_content_c = st.columns(3)
