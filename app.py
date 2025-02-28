@@ -11,22 +11,9 @@ purchased_games = st.multiselect(label='Purchase games:',
 #
 df_feat = pd.read_parquet('https://swp-mvp-media.s3.us-east-1.amazonaws.com/data/02_processed/ABT_feats.parquet')
 st.dataframe(df_feat.head())
-# purchased_games_str = [re.sub('[^A-Za-z0-9]+', '', i) for i in purchased_games]
-# purchased_games_str = [i.lower() for i in purchased_games_str]
-# purchased_games_str = [i.replace(' ','') for i in purchased_games_str]
-# df_selected_purchased = df_feat[df_feat.FK_GAME_NAME.isin(purchased_games_str)]
-# df_content = df_selected_purchased.drop_duplicates(subset='FK_GAME_NAME').copy()
-# df_content['explicative_features'] =\
-#   df_content['Tags'].astype(str)\
-#   + '|' + df_content['Categories'].astype(str)\
-#   + '|' + df_content['Supported languages'].astype(str)\
-#   + '|' + df_content['Estimated owners'].astype(str)\
-#   + '|' + df_content['Price'].astype(str)
-# df_content['explicative_features'] = df_content['explicative_features'].astype(str).str.replace("'",'No description').str.replace("None",'No description')
-# explicative_features = ' '.join(df_content['explicative_features'].to_list())
-# st.markdown(explicative_features)
-# st.dataframe(df_feat[df_feat.FK_GAME_NAME.isin(purchased_games_str)])
+
 content = model.recommender(purchased_games, df_feat)
+st.dataframe(df_feat[df_feat.FK_GAME_NAME.isin(content)])
 st.markdown(content)
 
 if len(purchased_games)==0:

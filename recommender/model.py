@@ -18,24 +18,24 @@ VS_collab_based = FAISS.load_local(
     "data/04_vector_store/VS_collab_based", embeddings, allow_dangerous_deserialization=True
 )
 
-def recommender(purchased_games, df_feats):
+def recommender(purchased_games, df_feat):
     #treating game list
     purchased_games = [re.sub('[^A-Za-z0-9]+', '', i) for i in purchased_games]
     purchased_games = [i.lower() for i in purchased_games]
     purchased_games = [i.replace(' ','') for i in purchased_games]
     
     #filter DF
-    df_feats = df_feats[df_feats.FK_GAME_NAME.isin(purchased_games)]
-    df_feats = df_feats.drop_duplicates(subset='FK_GAME_NAME')
-    df_feats['explicative_features'] =\
-    df_feats['Tags'].astype(str)\
-    + '|' + df_feats['Categories'].astype(str)\
-    + '|' + df_feats['Supported languages'].astype(str)\
-    + '|' + df_feats['Estimated owners'].astype(str)\
-    + '|' + df_feats['Price'].astype(str)
+    df_feat = df_feat[df_feat.FK_GAME_NAME.isin(purchased_games)]
+    df_feat = df_feat.drop_duplicates(subset='FK_GAME_NAME')
+    df_feat['explicative_features'] =\
+    df_feat['Tags'].astype(str)\
+    + '|' + df_feat['Categories'].astype(str)\
+    + '|' + df_feat['Supported languages'].astype(str)\
+    + '|' + df_feat['Estimated owners'].astype(str)\
+    + '|' + df_feat['Price'].astype(str)
     
-    df_feats['explicative_features'] = df_feats['explicative_features'].astype(str).str.replace("'",'No description').str.replace("None",'No description')
-    explicative_features = ' '.join(df_feats['explicative_features'].to_list())
+    df_feat['explicative_features'] = df_feat['explicative_features'].astype(str).str.replace("'",'No description').str.replace("None",'No description')
+    explicative_features = ' '.join(df_feat['explicative_features'].to_list())
     content_results = VS_content_based.similarity_search(
     str(explicative_features),
     k=30,
