@@ -26,15 +26,15 @@ if len(purchased_games)==0:
     st.header("Welcome to the plaform! You don't have any game yet, so here are popular games:")
     col_norec_a, col_norec_b, col_norec_c = st.columns(3)
     with col_norec_a:
-        norec_a = df_full[df_full.FK_GAME_NAME.isin(content)].sample()
+        norec_a = df_full.sample()
         st.image(norec_a['Screenshots'].item())
         st.image(norec_a['GAME_NAME'].item())
     with col_norec_b:
-        norec_b = df_full[df_full.FK_GAME_NAME.isin(content)].sample()
+        norec_b = df_full.sample()
         st.image(norec_b['Screenshots'].item())
         st.image(norec_b['GAME_NAME'].item())
     with col_norec_c:
-        norec_c = df_full[df_full.FK_GAME_NAME.isin(content)].sample()
+        norec_c = df_full.sample()
         st.image(norec_c['Screenshots'].item())
         st.image(norec_c['GAME_NAME'].item())
 else:
