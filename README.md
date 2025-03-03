@@ -24,7 +24,8 @@ To set up the project locally, follow these steps:
 1. **Clone the repository:**
 ```bash
 git clone https://github.com/Vitalrenan/recommenderSystem.git
-cd recommenderSystem
+cd recommenderSystem```
+
 2. Create and activate a virtual environment (optional but recommended):
 python3 -m venv env
 source env/bin/activate # On Windows, use `env\Scripts\activate`
